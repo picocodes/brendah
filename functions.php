@@ -98,6 +98,14 @@ if ( ! function_exists( 'brendah_setup' ) ) :
 	 * See: https://wordpress.org/plugins/ajax-live-search
 	 */
 	add_theme_support( 'ajax-live-search' );
+
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus(
+		array(
+			'top'    => __( 'Top Menu', 'brendah' ),
+			'social' => __( 'Social Links Menu', 'brendah' ),
+		)
+	);
  }
  
 endif; // brendah_setup
@@ -140,6 +148,16 @@ function brendah_widgets_init() {
 		'name'          => __( 'Sidebar', 'brendah' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Add widgets here to appear in your sidebar.', 'brendah' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Footer', 'brendah' ),
+		'id'            => 'sidebar-2',
+		'description'   => __( 'Add widgets here to appear in your footer area.', 'brendah' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
@@ -192,7 +210,7 @@ function brendah_scripts() {
 	 * Main theme javascript file
 	 * Contains the skip link focus fix; etc
 	 */
-	wp_enqueue_script( 'brendah-script', get_template_directory_uri() . '/js/brendah.min.js', array('jquery'), '1.0.0', true );
+	wp_enqueue_script( 'brendah-script', get_template_directory_uri() . '/js/brendah.js', array('jquery'), '1.0.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

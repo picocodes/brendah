@@ -20,12 +20,6 @@
 	// Primary Color
 	api( 'primary_color', function( value ) {
 		value.bind( function( to ) {
-			//Background
-			api( 'background_color' ).set( to );
-			api.control( 'background_color' ).container.find( '.color-picker-hex' )
-							.data( 'data-default-color', to )
-							.wpColorPicker( 'defaultColor', to );
-							
 			updateCSS( to, api( 'secondary_color' ).get() );
 		} );
 	} );

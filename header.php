@@ -28,7 +28,7 @@
 		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'brendah' ); ?></a>
 
 		<header id="masthead" class="site-header" role="banner">
-			<div class="site-header-main">
+			<div class="site-header-main wrap">
 				<div class="site-branding">
 
 					<?php if ( is_front_page() && is_home() ) : ?>
@@ -44,6 +44,15 @@
 				</div><!-- .site-branding -->
 			</div><!-- .site-header-main -->
 
+			<?php if ( has_nav_menu( 'top' ) ) : ?>
+				<div class="navigation-top wrap">
+					<div class="wrap">
+						<?php get_template_part( 'template-parts/navigation', 'top' ); ?>
+					</div><!-- .wrap -->
+				</div><!-- .navigation-top -->
+			<?php endif; ?>
+
+
 		</header><!-- .site-header -->
 		
 		<?php
@@ -55,7 +64,7 @@
 			do_action( 'brendah-after-header' );
 		?>
 		
-		<div id="content" class="site-content">
+		<div id="content" class="site-content wrap">
 		
 		<?php
 			/**

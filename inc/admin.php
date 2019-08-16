@@ -29,9 +29,9 @@ if ( ! class_exists( 'Brendah_Admin' ) ) :
 			//Admin Boards . The picocodes filter is intentional for compatibility with other
 			//picocodes plugins and themes			
 			$theme = wp_get_theme(); 
-			add_filter( 'picocodes_admin_boards', array( $this, 'picocodes_admin_boards' ), $theme->get( 'Name' ) );
+			add_filter( 'brendah_admin_boards', array( $this, 'admin_boards' ), $theme->get( 'Name' ) );
 			
-			$this->boards = apply_filters('picocodes_admin_boards', array(), 'brendah');
+			$this->boards = apply_filters('brendah_admin_boards', array(), 'brendah');
 			
 			//Hook into the brendah welcome action
 			add_action( 'brendah_welcome', 		array( $this, 'welcome_css' ), 			10 );
@@ -249,26 +249,10 @@ if ( ! class_exists( 'Brendah_Admin' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-		public function picocodes_admin_boards($boards, $package ='brendah' ) {
+		public function admin_boards($boards, $package ='brendah' ) {
 			
 			if ( is_array( $boards) ) {
 				
-				//woocommerce
-				$boards['install-woocommerce'] = array(
-					'title' => esc_html__( 'WooCommerce Ready!', 'brendah' ),
-					'description' => esc_html__( 'Works fine as a stand-alone theme or as a WooCommerce store Theme.', 'brendah' ),
-					'link' => $this->get_woocommerce_link(),
-					);
-				
-				
-				//ajax live search
-				$boards['install-als'] = array(
-					'title' => esc_html__( 'Ajax Live Search', 'brendah' ),
-					'description' => esc_html__( "Brendah has been configured to work with the free Ajax Live Search plugin out of the box. You don't have to edit any theme files.", 'brendah' ),
-					'link' => $this->get_als_link(),
-					);
-					
-					
 				//Customizer
 				$boards['customize-brendah'] = array(
 					'title' => esc_html__( 'Customize Brendah', 'brendah' ),
@@ -283,13 +267,7 @@ if ( ! class_exists( 'Brendah_Admin' ) ) :
 					'description' => esc_html__( 'Use github to report a bug or send a pull request. You can also help translate Brendah on WordPress.', 'brendah' ),
 					'link' => $this->get_contribute_link(),
 					);
-					
-				//Donate
-				$boards['donate-brendah'] = array(
-					'title' => esc_html__( 'Donate', 'brendah' ),
-					'description' => __( 'The best way to make a donation is by buying the premium version of Ajax Live Search plugin. It only costs <code>$29</code>.', 'brendah' ),
-					'link' => $this->get_donate_link(),
-					);
+	
 			}
 			
 			return $boards;

@@ -14,6 +14,30 @@
 		</div><!-- .site-content -->
 
 		<footer id="colophon" class="site-footer" role="contentinfo">
+			<?php
+				get_template_part( 'template-parts/footer', 'widgets' );
+
+				if ( has_nav_menu( 'social' ) ) :
+					?>
+					<nav class="social-navigation wrap" role="navigation" aria-label="<?php esc_attr_e( 'Footer Social Links Menu', 'brendah' ); ?>">
+						<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'social',
+									'menu_class'     => 'social-links-menu',
+									'depth'          => 1,
+									'link_before'    => '<span class="screen-reader-text">',
+									'link_after'     => '</span>' . brendah_get_svg( array( 'icon' => 'chain' ) ),
+								)
+							);
+						?>
+					</nav><!-- .social-navigation -->
+					<?php
+				endif;
+
+				
+				?>
+
 			<div class="site-info">
 				<?php
 					/**
@@ -22,10 +46,11 @@
 					 * @since Brendah 1.0
 					 */
 					do_action( 'brendah-credits' );
+
+					get_template_part( 'template-parts/footer', 'info' );
 				?>
 				
-				<span class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
-				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'brendah' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'brendah' ), 'WordPress' ); ?></a>
+				
 			</div><!-- .site-info -->
 		</footer><!-- .site-footer -->
 	</div><!-- .site-inner -->

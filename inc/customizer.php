@@ -32,7 +32,7 @@ function brendah_custom_background() {
 	) ) );
 
 }
-add_action( 'after_setup_theme', 'brendah_custom_background' );
+//add_action( 'after_setup_theme', 'brendah_custom_background' );
 
 if ( ! function_exists( 'brendah_header_style' ) ) :
 /**
@@ -92,7 +92,7 @@ function brendah_customize_register( $wp_customize ) {
 	) );
 	
 	$wp_customize->add_control( 'sidebar', array(
-		'label'    => __( 'Base Color Scheme', 'brendah' ),
+		'label'    => __( 'Sidebar position', 'brendah' ),
 		'section'  => 'layout',
 		'type'     => 'select',
 		'choices'  => apply_filters( 'brendah_sidebar_choices', array(
@@ -138,7 +138,7 @@ add_action( 'customize_register', 'brendah_customize_register', 11 );
  * @since Brendah 1.0
  */
 function brendah_customize_control_js() {
-	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20160412', true );
+	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '1.0.1', true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'brendah_customize_control_js' );
 
