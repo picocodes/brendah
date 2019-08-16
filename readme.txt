@@ -5,7 +5,7 @@ Tested up to: WordPress 4.6.1
 Version: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, white, light, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Tags: two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
 
 == Description ==
 This is probably the leanest theme on the market!
