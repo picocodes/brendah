@@ -13,8 +13,8 @@
 				the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span> / ');
 			}
 		?>
-		<a href="<?php echo esc_url( __( 'https://noptin.com/', 'brendah' ) ); ?>" class="imprint">
-			<?php printf( __( 'Theme Brendah By %s', 'brendah' ), 'Noptin' ); ?>
+		<a href="<?php echo esc_url( __( 'https://github.com/picocodes/', 'brendah' ) ); ?>" class="imprint">
+			<?php printf( esc_html__( 'Theme Brendah By %s', 'brendah' ), 'Noptin' ); ?>
 		</a>
 	</div>
 	

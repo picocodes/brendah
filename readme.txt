@@ -1,11 +1,12 @@
 === Brendah ===
-Contributors: Picocodes
-Requires at least: WordPress 4.4
-Tested up to: WordPress 4.6.1
-Version: 1.0
-License: GPLv2 or later
+Contributors: picocodes
+Requires at least: WordPress 4.9
+Requires PHP: 5.2.4
+Tested up to: WordPress 5.2
+Version: 1.0.5
+License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Tags: blog, one-column, two-columns, left-sidebar, right-sidebar, accessibility-ready, custom-colors, featured-images, footer-widgets, post-formats, sticky-post, theme-options, threaded-comments, translation-ready 
 
 == Description ==
 This is probably the leanest theme on the market!
@@ -26,6 +27,9 @@ This is probably the leanest theme on the market!
 
 == Copyright ==
 
+Brendah WordPress Theme, Copyright 2019 noptin.org
+Brendah is distributed under the terms of the GNU GPL
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
@@ -35,6 +39,20 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
+
+Brendah bundles the following third-party resources:
+
+HTML5 Shiv, Copyright 2014 Alexander Farkas
+Licenses: MIT/GPL2
+Source: https://github.com/aFarkas/html5shiv
+
+normalize.css, Copyright 2012-2016 Nicolas Gallagher and Jonathan Neal
+License: MIT
+Source: https://necolas.github.io/normalize.css/
+
+Screenshot image, Copyright Hubble
+License: CC0 1.0 Universal (CC0 1.0)
+Source: https://unsplash.com/photos/dpftXpDw1JI
 
 == Changelog ==
 

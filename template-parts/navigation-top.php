@@ -9,10 +9,10 @@
 <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Top Menu', 'brendah' ); ?>">
 	<div class="mobile-top-header">
 		<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
-		<div class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
+		<button  class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
 			<?php get_template_part( 'template-parts/menu', 'svg' ); ?>
-			<span class="screen-reader-text"><?php _e( 'Menu', 'brendah' ); ?></span>
-		</div>
+			<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'brendah' ); ?></span>
+		</button>
 	</div>
 	
 

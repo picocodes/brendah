@@ -9,10 +9,16 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-			<span class="sticky-post"><?php _e( 'Featured', 'brendah' ); ?></span>
+			<span class="sticky-post"><?php esc_html_e( 'Featured', 'brendah' ); ?></span>
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php 
+			if( is_singular() ) {
+				the_title( '<h1 class="entry-title">', '</h1>' );
+			} else {
+				the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
+			}
+		?>
 		
 		<?php
 			//Categories
@@ -21,7 +27,7 @@
 				$categories_list = get_the_category_list( _x( ' / ', 'Used between list items, there is a space after the foward slash.', 'brendah' ) );
 				if ( $categories_list ) {
 					printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-						_x( 'Categories', 'Used before category names.', 'brendah' ),
+					esc_html_x( 'Categories', 'Used before category names.', 'brendah' ),
 						$categories_list
 					);
 				}
@@ -69,7 +75,7 @@
 				$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'brendah' ) );
 				if ( $tags_list ) {
 					printf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-						_x( 'Tags', 'Used before tag names.', 'brendah' ),
+						esc_html_x( 'Tags', 'Used before tag names.', 'brendah' ),
 						$tags_list
 					);
 				}

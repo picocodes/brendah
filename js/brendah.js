@@ -1,8 +1,9 @@
 (function( $ ) {
 	'use strict';
+
 	// make dropdowns functional on focus to aid screen readers
-	$( '.primary-menu' ).find( 'a' ).on( 'focus blur', function() {
-		$( this ).parents( 'ul, li' ).toggleClass( 'focus' );
+	$( '.main-navigation' ).find( 'a' ).on( 'focus blur', function() {
+		$( this ).closest( '.menu-item-has-children' ).toggleClass( 'focus' );
 	} );
 	
 	// menu navigation with arrow keys 

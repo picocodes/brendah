@@ -103,7 +103,6 @@ if ( ! function_exists( 'brendah_setup' ) ) :
 	register_nav_menus(
 		array(
 			'top'    => __( 'Top Menu', 'brendah' ),
-			'social' => __( 'Social Links Menu', 'brendah' ),
 		)
 	);
  }
@@ -199,8 +198,11 @@ add_filter( 'excerpt_more', 'brendah_excerpt_more' );
  */
 function brendah_scripts() {
 
+	//Google fonts
+	wp_enqueue_style( 'brendah-fonts', 'https://fonts.googleapis.com/css?family=Montserrat&display=swap' );
+
     // Main theme stylesheet.
-	wp_enqueue_style( 'brendah-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'brendah-style', get_stylesheet_uri(), array(), '1.0.5' );
 	
 	// Load the html5 shiv.
 	wp_enqueue_script( 'brendah-html5', get_template_directory_uri() . '/js/html5.min.js', array(), '3.7.3' );
@@ -210,24 +212,10 @@ function brendah_scripts() {
 	 * Main theme javascript file
 	 * Contains the skip link focus fix; etc
 	 */
-	wp_enqueue_script( 'brendah-script', get_template_directory_uri() . '/js/brendah.js', array('jquery'), '1.0.0', true );
+	wp_enqueue_script( 'brendah-script', get_template_directory_uri() . '/js/brendah.js', array('jquery'), '1.0.5', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
-	}
-	
-	//Speeds up comment replys
-	if ( is_singular() && comments_open() ) {
-		wp_enqueue_script( 'brendah-comments', get_template_directory_uri() . "/js/comments.min.js", array('jquery'), '1.0.0', true );
-		$comment_i18n = array( 
-			'processing' => __( 'Processing...', 'brendah' ),
-			'flood' => sprintf( __( 'Your comment was either a duplicate or you are posting too rapidly. <a href="%s">Edit your comment</a>', 'brendah' ), '#comment' ),
-			'error' => __( 'There were errors in submitting your comment; complete the missing fields and try again!', 'brendah' ),
-			'emailInvalid' => __( 'That email appears to be invalid.', 'brendah' ),
-			'required' => __( 'This is a required field.', 'brendah' )
-		);
-		
-		wp_localize_script( 'brendah-comments', 'brendahComments', $comment_i18n );
 	}
 
 }
@@ -451,6 +439,49 @@ function brendah_ajax_comments( $comment_ID, $comment_status ) {
 	}
 }
 
+/**
+ * Register the recommended plugins for this theme.
+ *
+ */
+function brendah_register_required_plugins() {
+	/*
+	 * Array of plugin arrays. Required keys are name and slug.
+	 * If the source is NOT from the .org repo, then source is also required.
+	 */
+	$plugins = array(
+
+		array(
+			'name'      => 'Noptin &mdash; Newsletter Subscribe Forms And Widgets',
+			'slug'      => 'newsletter-optin-box',
+			'required'  => false,
+		),
+
+
+	);
+
+	/*
+	 * Array of configuration settings.
+	 */
+	$config = array(
+		'id'           => 'brendah',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+		
+	);
+
+	tgmpa( $plugins, $config );
+}
+
+add_action( 'tgmpa_register', 'brendah_register_required_plugins' );
+
+
+//tgmpa
+require_once('inc/class-tgm-plugin-activation.php');
 
 //Customizer settings
 require_once('inc/customizer.php');

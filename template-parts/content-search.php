@@ -17,7 +17,7 @@
 				$categories_list = get_the_category_list( _x( ' / ', 'Used between list items, there is a space after the foward slash.', 'brendah' ) );
 				if ( $categories_list ) {
 					printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-						_x( 'Categories', 'Used before category names.', 'brendah' ),
+					esc_html_x( 'Categories', 'Used before category names.', 'brendah' ),
 						$categories_list
 					);
 				}
