@@ -163,6 +163,23 @@ function brendah_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 
+	//WC sidebars
+	if ( class_exists( 'WooCommerce' ) ) {
+		$sidebars = array( 'account', 'checkout', 'cart', 'product', 'shop');
+
+		foreach( $sidebars as $sidebar ){
+			register_sidebar( array(
+				'name'          => ucwords("$sidebar"),
+				'id'            => $sidebar,
+				'description'   => sprintf( __( 'Add widgets here to appear in your WooCommerce %s page sidebar.', 'brendah' ), $sidebar),
+				'before_widget' => '<section id="%1$s" class="widget woocommerce-widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			) );
+		}
+	}
+
 }
 add_action( 'widgets_init', 'brendah_widgets_init' );
 
@@ -202,7 +219,7 @@ function brendah_scripts() {
 	wp_enqueue_style( 'brendah-fonts', 'https://fonts.googleapis.com/css?family=Montserrat&display=swap' );
 
     // Main theme stylesheet.
-	wp_enqueue_style( 'brendah-style', get_stylesheet_uri(), array(), '1.0.5' );
+	wp_enqueue_style( 'brendah-style', get_stylesheet_uri() );
 	
 	// Load the html5 shiv.
 	wp_enqueue_script( 'brendah-html5', get_template_directory_uri() . '/js/html5.min.js', array(), '3.7.3' );
@@ -322,7 +339,7 @@ endif;
 function brendah_body_classes( $classes ) {
 	
 	// Adds a class of no-sidebar to sites without active sidebar or the chosen sidebar position.
-	if ( ! is_active_sidebar( 'sidebar-1' )) {
+	if ( ! is_active_sidebar( brendah_get_sidebar() )) {
 		$classes[] = 'no-sidebar';
 	} else {
 		$classes[] = get_theme_mod( 'sidebar', 'right-sidebar' );
@@ -331,6 +348,40 @@ function brendah_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'brendah_body_classes' );
+
+/**
+ * Checks the sidebar for a page
+ *
+ */
+function brendah_get_sidebar() {
+
+	$sidebar = 'sidebar-1';
+	if ( class_exists( 'WooCommerce' ) ) {
+
+		if ( is_account_page() ) {
+			$sidebar= 'account';
+		}
+		
+		if ( is_checkout() ) {
+			$sidebar= 'checkout';
+		}
+		
+		if ( is_cart() ) {
+			$sidebar= 'cart';
+		}
+		
+		if ( is_product() ) {
+			$sidebar= 'product';
+		}
+		
+		if ( is_shop() || is_product_category() ) {
+			$sidebar= 'shop';
+		}
+
+	}
+	return $sidebar;
+
+}
 
 /**
  * Filters the ajax live search template file

@@ -82,7 +82,7 @@ function brendah_customize_register( $wp_customize ) {
 	
 	// Sidebar Position
 	$wp_customize->add_section( 'layout', array(
-		'title'           => __( 'Layout', 'brendah' ),
+		'title'           => 'Brendah',
 	) );
 	
 	$wp_customize->add_setting( 'sidebar', array(
@@ -90,9 +90,11 @@ function brendah_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'brendah_sanitize_sidebar',
 		'transport'         => 'postMessage',
 	) );
+
+	$wp_customize->add_setting( 'copyright_text', array() );
 	
 	$wp_customize->add_control( 'sidebar', array(
-		'label'    => __( 'Sidebar position', 'brendah' ),
+		'label'    => __( 'Sidebar Position', 'brendah' ),
 		'section'  => 'layout',
 		'type'     => 'select',
 		'choices'  => apply_filters( 'brendah_sidebar_choices', array(
@@ -101,6 +103,13 @@ function brendah_customize_register( $wp_customize ) {
 			'no-sidebar'     => __( 'No Sidebar', 'brendah' ),
 		)),
 		'priority' => 1,
+	) );
+
+	$wp_customize->add_control( 'copyright_text', array(
+		'label'    => __( 'Copyright Text', 'brendah' ),
+		'section'  => 'layout',
+		'type'     => 'textarea',
+		'priority' => 2,
 	) );
 	
 	
@@ -212,6 +221,11 @@ function brendah_get_primary_color_css( $color ) {
 		.gallery-item:hover,
 		.widget		{
 			border-color: %1$s;
+		}
+
+		.woocommerce-MyAccount-navigation ul li.is-active{
+			background-color: %1$s;
+    		border-color: %1$s;
 		}
 	';
 	
